@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import DashboardHeader from '@/components/DashboardHeader';
@@ -45,7 +45,15 @@ interface Educator {
   name: string;
 }
 
-export default function StudentAppointmentsPage() {
+export default function StudentAppointmentsPageWrapper() {
+  return (
+    <Suspense fallback={null}>
+      <StudentAppointmentsPage />
+    </Suspense>
+  );
+}
+
+function StudentAppointmentsPage() {
   const searchParams = useSearchParams();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [appointments, setAppointments] = useState<Appointment[]>([]);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import DashboardHeader from '@/components/DashboardHeader';
@@ -43,7 +43,15 @@ interface Course {
   enrollments?: { studentEmail: string; studentName: string }[];
 }
 
-export default function CreatorSchedulePage() {
+export default function CreatorSchedulePageWrapper() {
+  return (
+    <Suspense fallback={null}>
+      <CreatorSchedulePage />
+    </Suspense>
+  );
+}
+
+function CreatorSchedulePage() {
   const { user, displayName } = useUserContext();
   const searchParams = useSearchParams();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
