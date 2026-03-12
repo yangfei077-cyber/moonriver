@@ -2,6 +2,16 @@
 
 A full-featured music education platform built with **Next.js 15**, **Auth0** authentication, **Google Calendar** integration via Token Vault, and **AI-powered RAG search**.
 
+## Screenshots
+
+| Student Dashboard | AI Instructor Matching |
+|:-:|:-:|
+| ![Student Dashboard](docs/screenshots/screenshot-3.png) | ![Find Instructors](docs/screenshots/screenshot-4.png) |
+
+| Schedule & Google Calendar | Admin Command Center |
+|:-:|:-:|
+| ![Schedule](docs/screenshots/screenshot-2.png) | ![Admin Dashboard](docs/screenshots/screenshot-1.png) |
+
 ## Demo Accounts
 
 > Create these accounts in Auth0 Dashboard (User Management > Users > Create User) with connection `Username-Password-Authentication`, then assign the corresponding role.
