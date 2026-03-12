@@ -1,19 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { auth0 } from '../../../../lib/auth0.js';
 import { sql } from '@/lib/db';
-
-const TOKENS_FILE = path.join(process.cwd(), 'data', 'google-tokens.json');
-
-function getGoogleToken(userId: string): string | null {
-  try {
-    const tokens = JSON.parse(fs.readFileSync(TOKENS_FILE, 'utf8'));
-    return tokens[userId]?.access_token || null;
-  } catch {
-    return null;
-  }
-}
+import { getGoogleAccessToken } from '@/lib/google-calendar-token';
 
 async function deleteGoogleEvent(accessToken: string, googleEventId: string) {
   try {
@@ -142,7 +130,7 @@ export async function POST(request: NextRequest) {
 
       const newId = inserted?.id;
 
-      const accessToken = getGoogleToken(session.user.sub);
+      const accessToken = await getGoogleAccessToken(request);
       if (accessToken && newId) {
         try {
           const event = {
@@ -205,7 +193,7 @@ export async function POST(request: NextRequest) {
       `;
 
       if (apt.google_event_id) {
-        const accessToken = getGoogleToken(session.user.sub);
+        const accessToken = await getGoogleAccessToken(request);
         if (accessToken) {
           await updateGoogleEvent(accessToken, apt.google_event_id, newStartTime, newEndTime, apt.title);
         }
@@ -220,7 +208,7 @@ export async function POST(request: NextRequest) {
       if (!apt) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
       if (apt.google_event_id) {
-        const accessToken = getGoogleToken(session.user.sub);
+        const accessToken = await getGoogleAccessToken(request);
         if (accessToken) {
           await deleteGoogleEvent(accessToken, apt.google_event_id);
         }

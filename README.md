@@ -73,7 +73,7 @@ Required variables:
 - **Auth0**: `AUTH0_SECRET`, `AUTH0_DOMAIN`, `AUTH0_CLIENT_ID`, `AUTH0_CLIENT_SECRET`
 - **Auth0 Management**: `AUTH0_MANAGEMENT_CLIENT_ID`, `AUTH0_MANAGEMENT_CLIENT_SECRET`
 - **OpenRouter** (for AI): `OPENROUTER_API_KEY`
-- **Google Calendar** (optional): `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+- **Google Calendar** (optional): via Auth0 Token Vault — add Google connection, enable Offline Access, create My Account API, enable Token Vault grant (see `env.example`)
 
 ### 3. Auth0 Setup
 

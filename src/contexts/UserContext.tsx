@@ -29,9 +29,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const fetchUserRoles = async () => {
       if (!user?.sub) {
-        setLoadingRoles(false);
         return;
       }
+      setLoadingRoles(true);
       try {
         const response = await fetch('/api/user-roles');
         if (response.ok) {

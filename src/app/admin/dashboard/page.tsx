@@ -195,32 +195,29 @@ export default function AdminDashboardPage() {
   const fetchData = useCallback(async () => {
     try {
       setLoadingStats(true);
-      const [appointmentsRes, usersRes, coursesRes] = await Promise.all([
+      const [statsRes, appointmentsRes, usersRes] = await Promise.all([
+        fetch('/api/admin/stats'),
         fetch('/api/appointments?all=true'),
         fetch('/api/users'),
-        fetch('/api/courses'),
       ]);
 
+      const statsData = statsRes.ok ? await statsRes.json() : {};
       const appointmentsData = appointmentsRes.ok ? await appointmentsRes.json() : { appointments: [] };
       const usersData = usersRes.ok ? await usersRes.json() : { users: [] };
-      const coursesData = coursesRes.ok ? await coursesRes.json() : { courses: [] };
 
       const apts = appointmentsData.appointments || [];
       const allUsers = usersData.users || [];
-      const courses = coursesData.courses || [];
 
-      const students = allUsers.filter((u: PlatformUser) => u.type === 'student');
-      const creators = allUsers.filter((u: PlatformUser) => u.type === 'creator');
-      const totalEnrollments = courses.reduce((sum: number, c: { currentStudents?: number }) => sum + (c.currentStudents || 0), 0);
-
-      setStats({
-        totalStudents: students.length,
-        totalCreators: creators.length,
-        activeCourses: courses.filter((c: { isActive?: boolean }) => c.isActive !== false).length,
-        totalEnrollments,
-        activeAppointments: apts.length,
-        revenue: '$12,450',
-      });
+      if (statsData.success && statsData.stats) {
+        setStats({
+          totalStudents: statsData.stats.totalStudents ?? 0,
+          totalCreators: statsData.stats.totalCreators ?? 0,
+          activeCourses: statsData.stats.activeCourses ?? 0,
+          totalEnrollments: statsData.stats.totalEnrollments ?? 0,
+          activeAppointments: statsData.stats.activeAppointments ?? 0,
+          revenue: statsData.stats.revenue ?? '$12,450',
+        });
+      }
 
       setAppointments(apts.slice(-8).reverse());
       setUsers(allUsers.slice(0, 6));

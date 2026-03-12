@@ -71,10 +71,11 @@ export default function CreatorSchedulePage() {
 
   const fetchData = async () => {
     try {
+      const opts = { credentials: 'include' as RequestCredentials };
       const [aptRes, coursesRes, statusRes] = await Promise.all([
-        fetch('/api/appointments?role=creator'),
-        fetch('/api/courses?creatorOnly=true'),
-        fetch('/api/google-calendar/status'),
+        fetch('/api/appointments?role=creator', opts),
+        fetch('/api/courses?creatorOnly=true', opts),
+        fetch('/api/google-calendar/status', opts),
       ]);
       const aptData = await aptRes.json();
       const coursesData = await coursesRes.json();
@@ -86,14 +87,14 @@ export default function CreatorSchedulePage() {
 
       // Auto-sync and fetch Google events if connected
       if (connected) {
-        await fetch('/api/google-calendar/sync', { method: 'POST' });
+        await fetch('/api/google-calendar/sync', { method: 'POST', credentials: 'include' });
         // Re-fetch appointments after sync
-        const freshRes = await fetch('/api/appointments?role=creator');
+        const freshRes = await fetch('/api/appointments?role=creator', { credentials: 'include' });
         const freshData = await freshRes.json();
         if (freshData.success) setAppointments(freshData.appointments || []);
         // Fetch Google Calendar events
         try {
-          const evtRes = await fetch('/api/google-calendar/events');
+          const evtRes = await fetch('/api/google-calendar/events', { credentials: 'include' });
           if (evtRes.ok) {
             const evtData = await evtRes.json();
             setGoogleEvents(evtData.appointments || []);
@@ -127,20 +128,15 @@ export default function CreatorSchedulePage() {
     }
   }, [searchParams]);
 
-  const handleGoogleAuth = async () => {
-    try {
-      const res = await fetch('/api/google-calendar/auth');
-      const data = await res.json();
-      if (data.authUrl) window.location.href = data.authUrl;
-    } catch (err) {
-      console.error(err);
-    }
+  const handleGoogleAuth = () => {
+    const returnTo = `${window.location.origin}/creator/schedule?success=calendar_connected`;
+    window.location.href = `/api/google-calendar/connect?returnTo=${encodeURIComponent(returnTo)}`;
   };
 
   const handleSync = async () => {
     setSyncing(true);
     try {
-      const res = await fetch('/api/google-calendar/sync', { method: 'POST' });
+      const res = await fetch('/api/google-calendar/sync', { method: 'POST', credentials: 'include' });
       const data = await res.json();
       if (data.success) {
         setCalendarConnected(true);
@@ -238,6 +234,25 @@ export default function CreatorSchedulePage() {
             title="Schedule"
             subtitle="Manage your lessons and appointments"
           />
+
+          {/* Connect error banner */}
+          {searchParams.get('error') === 'connect_failed' && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <p className="font-medium text-red-800">Google Calendar 连接失败</p>
+              {searchParams.get('error_detail') === 'refresh_token_not_issued' ? (
+                <p className="text-sm text-red-600 mt-1">
+                  Auth0 未返回 refresh token。请在 Auth0 Dashboard → Applications → 你的应用 → Advanced Settings → Grant Types 中勾选 <strong>Refresh Token</strong>，并确认 AUTH0_SCOPE 包含 <code>offline_access</code>。
+                </p>
+              ) : (
+                <p className="text-sm text-red-600 mt-1">
+                  请查看终端 (npm run dev) 的日志获取详细错误。若为开发环境，可查看浏览器地址栏的 error_detail 参数。
+                </p>
+              )}
+              {searchParams.get('error_detail') && searchParams.get('error_detail') !== 'refresh_token_not_issued' && (
+                <p className="text-xs text-red-500 mt-2 font-mono break-all">{searchParams.get('error_detail')}</p>
+              )}
+            </div>
+          )}
 
           {/* Google Calendar */}
           {!calendarConnected ? (

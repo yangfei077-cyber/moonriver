@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useUserContext } from '@/contexts/UserContext';
 import Sidebar from '@/components/Sidebar';
@@ -37,8 +38,13 @@ interface Appointment {
 }
 
 export default function CreatorDashboardPage() {
-  const { hasCompletedOnboarding, loadingOnboarding } = useUserContext();
+  const router = useRouter();
+  const { hasCompletedOnboarding, loadingOnboarding, isAdmin, loadingRoles } = useUserContext();
   const [courses, setCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    if (!loadingRoles && isAdmin) router.replace('/admin/dashboard');
+  }, [loadingRoles, isAdmin, router]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [notifications, setNotifications] = useState<{ id: string; title: string; read: boolean; createdAt: string }[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -71,6 +77,28 @@ export default function CreatorDashboardPage() {
   const totalStudents = courses.reduce((sum, c) => sum + (c.currentStudents || 0), 0);
   const activeCourses = courses.filter((c) => c.currentStudents > 0).length;
   const upcomingLessons = appointments.slice(0, 5);
+
+  if (loadingRoles) {
+    return (
+      <div className="min-h-screen bg-background-light">
+        <div className="flex h-screen">
+          <Sidebar />
+          <main className="flex-1 p-6 lg:p-10 overflow-y-auto">
+            <DashboardHeader title="Creator Studio" subtitle="Manage your courses and students" />
+            <div className="animate-pulse space-y-6">
+              <div className="h-24 bg-orange-100 rounded-xl" />
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="h-32 bg-orange-50 rounded-xl" />
+                ))}
+              </div>
+              <div className="h-64 bg-orange-50 rounded-xl" />
+            </div>
+          </main>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-light">

@@ -19,18 +19,39 @@ export default function HomePage() {
     }
   }, [user, loadingRoles, isAdmin, isCreator, isStudent, router]);
 
-  if (isLoading || (user && loadingRoles)) {
+  if (isLoading || (user && loadingRoles) || user) {
     return (
-      <div className="min-h-screen bg-[#FFFCF5] flex justify-center items-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dash-primary mx-auto mb-4" />
-          <p className="text-text-light text-lg">Loading...</p>
+      <div className="min-h-screen bg-[#FFFCF5]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="animate-pulse space-y-8">
+            <header className="flex justify-between items-center">
+              <div className="h-9 w-48 bg-orange-100 rounded-lg" />
+              <div className="h-10 w-28 bg-orange-100 rounded-full" />
+            </header>
+            <section className="py-20 text-center space-y-6">
+              <div className="h-6 w-48 bg-orange-50 rounded-full mx-auto" />
+              <div className="h-16 w-96 max-w-full bg-orange-100 rounded-xl mx-auto" />
+              <div className="h-4 w-80 max-w-full bg-orange-50 rounded mx-auto" />
+              <div className="flex justify-center gap-4">
+                <div className="h-12 w-40 bg-orange-100 rounded-full" />
+                <div className="h-12 w-40 bg-orange-50 rounded-full" />
+              </div>
+            </section>
+            <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-40 bg-orange-50 rounded-xl" />
+              ))}
+            </section>
+            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-72 bg-orange-50 rounded-xl" />
+              ))}
+            </section>
+          </div>
         </div>
       </div>
     );
   }
-
-  if (user) return null;
 
   return (
     <div className="bg-background-light font-body text-text-light min-h-screen">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import DashboardHeader from '@/components/DashboardHeader';
 import {
@@ -45,6 +46,7 @@ interface Educator {
 }
 
 export default function StudentAppointmentsPage() {
+  const searchParams = useSearchParams();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [educators, setEducators] = useState<Educator[]>([]);
@@ -167,14 +169,8 @@ export default function StudentAppointmentsPage() {
     return allEvents.filter((a) => a.date === dateStr);
   };
 
-  const handleConnectGoogle = async () => {
-    try {
-      const res = await fetch('/api/google-calendar/auth');
-      const data = await res.json();
-      if (data.authUrl) window.location.href = data.authUrl;
-    } catch {
-      setError('Failed to connect Google Calendar');
-    }
+  const handleConnectGoogle = () => {
+    window.location.href = '/api/google-calendar/connect?returnTo=' + encodeURIComponent('/student/appointments?success=calendar_connected');
   };
 
   const handleSyncGoogle = async () => {
@@ -330,6 +326,19 @@ export default function StudentAppointmentsPage() {
             title="Schedule"
             subtitle="Manage your lessons and appointments."
           />
+
+          {searchParams.get('error') === 'connect_failed' && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <p className="font-medium text-red-800">Google Calendar 连接失败</p>
+              {searchParams.get('error_detail') === 'refresh_token_not_issued' ? (
+                <p className="text-sm text-red-600 mt-1">
+                  Auth0 未返回 refresh token。请在 Auth0 Dashboard → Applications → 你的应用 → Advanced Settings → Grant Types 中勾选 <strong>Refresh Token</strong>，并确认 AUTH0_SCOPE 包含 <code>offline_access</code>。
+                </p>
+              ) : (
+                <p className="text-sm text-red-600 mt-1">请检查 Auth0 配置或查看终端日志。</p>
+              )}
+            </div>
+          )}
 
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">

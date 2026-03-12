@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Sidebar from '@/components/Sidebar';
 import DashboardHeader from '@/components/DashboardHeader';
@@ -38,8 +39,14 @@ interface Appointment {
 }
 
 export default function StudentDashboardPage() {
-  const { displayName, hasCompletedOnboarding, loadingOnboarding } = useUserContext();
+  const router = useRouter();
+  const { displayName, hasCompletedOnboarding, loadingOnboarding, isAdmin, loadingRoles } = useUserContext();
   const [courses, setCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    if (!loadingRoles && isAdmin) router.replace('/admin/dashboard');
+  }, [loadingRoles, isAdmin, router]);
+
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [notifications, setNotifications] = useState<{ id: string; title: string; read: boolean; createdAt: string }[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -81,7 +88,7 @@ export default function StudentDashboardPage() {
   const practiceHours = 12; // mock
   const upcomingLessons = appointments.length;
 
-  if (loading) {
+  if (loading || loadingRoles) {
     return (
       <div className="min-h-screen bg-background-light">
         <div className="flex h-screen">

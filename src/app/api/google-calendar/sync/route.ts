@@ -1,28 +1,16 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { auth0 } from '../../../../../lib/auth0.js';
-import fs from 'fs';
-import path from 'path';
 import { sql } from '@/lib/db';
+import { getGoogleAccessToken } from '@/lib/google-calendar-token';
 
-const TOKENS_FILE = path.join(process.cwd(), 'data', 'google-tokens.json');
-
-function getToken(userId: string): string | null {
-  try {
-    const tokens = JSON.parse(fs.readFileSync(TOKENS_FILE, 'utf8'));
-    return tokens[userId]?.access_token || null;
-  } catch {
-    return null;
-  }
-}
-
-export async function POST() {
+export async function POST(request: NextRequest) {
   try {
     if (!sql) return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
 
     const session = await auth0.getSession();
     if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const accessToken = getToken(session.user.sub);
+    const accessToken = await getGoogleAccessToken(request);
     if (!accessToken) {
       return NextResponse.json({ error: 'Not connected to Google Calendar' }, { status: 400 });
     }
