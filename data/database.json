@@ -1,0 +1,1125 @@
+{
+  "courses": [
+    {
+      "id": "course-1",
+      "title": "Guitar Fundamentals",
+      "description": "Learn the basics of guitar playing from tuning to your first chords and strumming patterns.",
+      "creatorEmail": "creator@moonriver.com",
+      "creatorName": "Sarah Johnson",
+      "category": "Guitar",
+      "level": "Beginner",
+      "duration": "8 weeks",
+      "price": 299,
+      "maxStudents": 15,
+      "currentStudents": 8,
+      "schedule": "Tuesdays & Thursdays 6:00-7:30 PM",
+      "image": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=300&fit=crop",
+      "topics": [
+        "Basic chords",
+        "Strumming patterns",
+        "Fingerpicking",
+        "Reading tablature"
+      ],
+      "isActive": true,
+      "createdAt": "2024-01-15T00:00:00Z"
+    },
+    {
+      "id": "course-2",
+      "title": "Piano Mastery",
+      "description": "Advanced piano techniques, classical repertoire, and performance preparation.",
+      "creatorEmail": "creator@moonriver.com",
+      "creatorName": "Sarah Johnson",
+      "category": "Piano",
+      "level": "Advanced",
+      "duration": "12 weeks",
+      "price": 499,
+      "maxStudents": 12,
+      "currentStudents": 6,
+      "schedule": "Mondays & Wednesdays 7:00-8:30 PM",
+      "image": "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=400&h=300&fit=crop",
+      "topics": [
+        "Advanced scales",
+        "Classical pieces",
+        "Sight reading",
+        "Performance skills"
+      ],
+      "isActive": true,
+      "createdAt": "2024-01-20T00:00:00Z"
+    },
+    {
+      "id": "course-3",
+      "title": "Vocal Training Basics",
+      "description": "Develop your singing voice with proper technique, breathing, and vocal exercises.",
+      "creatorEmail": "michael@moonriver.com",
+      "creatorName": "Michael Chen",
+      "category": "Vocal",
+      "level": "Beginner",
+      "duration": "6 weeks",
+      "price": 199,
+      "maxStudents": 16,
+      "currentStudents": 12,
+      "schedule": "Saturdays 10:00 AM-12:00 PM",
+      "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
+      "topics": [
+        "Breathing techniques",
+        "Vocal warm-ups",
+        "Range expansion",
+        "Stage presence"
+      ],
+      "isActive": true,
+      "createdAt": "2024-02-01T00:00:00Z"
+    },
+    {
+      "id": "course-4",
+      "title": "Music Theory Essentials",
+      "description": "Comprehensive music theory covering scales, chords, harmony, and composition fundamentals.",
+      "creatorEmail": "emily@moonriver.com",
+      "creatorName": "Dr. Emily Rodriguez",
+      "category": "Theory",
+      "level": "Intermediate",
+      "duration": "10 weeks",
+      "price": 349,
+      "maxStudents": 20,
+      "currentStudents": 14,
+      "schedule": "Wednesdays & Fridays 5:00-6:30 PM",
+      "image": "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
+      "topics": [
+        "Scale construction",
+        "Chord theory",
+        "Harmonic progressions",
+        "Composition basics"
+      ],
+      "isActive": true,
+      "createdAt": "2024-02-10T00:00:00Z"
+    },
+    {
+      "id": "course-5",
+      "title": "Jazz Improvisation Workshop",
+      "description": "Learn the art of jazz improvisation with focus on chord changes, scales, and solo techniques.",
+      "creatorEmail": "creator@moonriver.com",
+      "creatorName": "Sarah Johnson",
+      "category": "Jazz",
+      "level": "Advanced",
+      "duration": "6 weeks",
+      "price": 379,
+      "maxStudents": 10,
+      "currentStudents": 7,
+      "schedule": "Sundays 2:00-4:00 PM",
+      "image": "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=400&h=300&fit=crop",
+      "topics": [
+        "Jazz scales",
+        "Chord substitution",
+        "Rhythmic patterns",
+        "Performance techniques"
+      ],
+      "isActive": true,
+      "createdAt": "2024-02-15T00:00:00Z"
+    },
+    {
+      "id": "course-6",
+      "title": "Digital Music Production",
+      "description": "Learn modern music production using digital audio workstations, MIDI, and mixing techniques.",
+      "creatorEmail": "michael@moonriver.com",
+      "creatorName": "Michael Chen",
+      "category": "Production",
+      "level": "Intermediate",
+      "duration": "10 weeks",
+      "price": 279,
+      "maxStudents": 14,
+      "currentStudents": 9,
+      "schedule": "Thursdays 7:30-9:00 PM",
+      "image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=300&fit=crop",
+      "topics": [
+        "DAW basics",
+        "MIDI programming",
+        "Audio recording",
+        "Mixing & mastering"
+      ],
+      "isActive": true,
+      "createdAt": "2024-03-01T00:00:00Z"
+    },
+    {
+      "id": "course-7",
+      "title": "Drumming Essentials",
+      "description": "Master rhythm, timing, and essential drum patterns for rock, jazz, and funk styles.",
+      "creatorEmail": "james@moonriver.com",
+      "creatorName": "James Wilson",
+      "category": "Drums",
+      "level": "Beginner",
+      "duration": "8 weeks",
+      "price": 259,
+      "maxStudents": 8,
+      "currentStudents": 5,
+      "schedule": "Mondays & Fridays 6:00-7:30 PM",
+      "image": "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=400&h=300&fit=crop",
+      "topics": [
+        "Basic rock beats",
+        "Drum fills",
+        "Ghost notes",
+        "Dynamic control"
+      ],
+      "isActive": true,
+      "createdAt": "2024-03-05T00:00:00Z"
+    },
+    {
+      "id": "course-8",
+      "title": "Songwriting & Composition",
+      "description": "Develop your songwriting skills with lyric writing, melody creation, and song structure.",
+      "creatorEmail": "emily@moonriver.com",
+      "creatorName": "Dr. Emily Rodriguez",
+      "category": "Composition",
+      "level": "Beginner",
+      "duration": "8 weeks",
+      "price": 229,
+      "maxStudents": 18,
+      "currentStudents": 10,
+      "schedule": "Fridays 6:30-8:00 PM",
+      "image": "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
+      "topics": [
+        "Lyric writing",
+        "Melody creation",
+        "Chord progressions",
+        "Song structure"
+      ],
+      "isActive": true,
+      "createdAt": "2024-03-10T00:00:00Z"
+    },
+    {
+      "id": "course-1773311372507",
+      "title": "My Course",
+      "description": "yes",
+      "category": "Piano",
+      "level": "Intermediate",
+      "duration": "",
+      "price": 0,
+      "maxStudents": 10,
+      "currentStudents": 0,
+      "schedule": "",
+      "topics": [],
+      "creatorEmail": "yangfei077@gmail.com",
+      "creatorName": "Yang",
+      "image": "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
+      "isActive": true,
+      "createdAt": "2026-03-12T10:29:32.507Z"
+    }
+  ],
+  "creators": [
+    {
+      "id": "creator-1",
+      "email": "creator@moonriver.com",
+      "name": "Sarah Johnson",
+      "bio": "Classical pianist with 15 years of teaching experience. Graduated from Juilliard School of Music.",
+      "specialties": [
+        "Piano",
+        "Guitar",
+        "Jazz",
+        "Music Theory"
+      ],
+      "experience": "15 years",
+      "education": "Juilliard School of Music",
+      "rating": 4.9,
+      "studentsCount": 45,
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "creator-2",
+      "email": "michael@moonriver.com",
+      "name": "Michael Chen",
+      "bio": "Professional vocal coach and music producer. Former Broadway performer with Berklee College of Music education.",
+      "specialties": [
+        "Vocal",
+        "Production",
+        "Performance"
+      ],
+      "experience": "12 years",
+      "education": "Berklee College of Music",
+      "rating": 4.8,
+      "studentsCount": 32,
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "creator-3",
+      "email": "emily@moonriver.com",
+      "name": "Dr. Emily Rodriguez",
+      "bio": "Music theory professor and composer. PhD in Musicology from Harvard University.",
+      "specialties": [
+        "Music Theory",
+        "Composition",
+        "Analysis"
+      ],
+      "experience": "20 years",
+      "education": "Harvard University PhD",
+      "rating": 4.9,
+      "studentsCount": 28,
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "creator-4",
+      "email": "james@moonriver.com",
+      "name": "James Wilson",
+      "bio": "Professional drummer and percussionist. Toured with major bands and teaches all skill levels.",
+      "specialties": [
+        "Drums",
+        "Percussion",
+        "Rhythm"
+      ],
+      "experience": "18 years",
+      "education": "Musicians Institute",
+      "rating": 4.7,
+      "studentsCount": 38,
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+    }
+  ],
+  "students": [
+    {
+      "id": "student-1",
+      "email": "student@moonriver.com",
+      "name": "Alex Thompson",
+      "bio": "Passionate about learning guitar and music theory. Started playing 6 months ago.",
+      "interests": [
+        "Guitar",
+        "Music Theory",
+        "Rock"
+      ],
+      "level": "Beginner",
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "student-2",
+      "email": "maria@moonriver.com",
+      "name": "Maria Garcia",
+      "bio": "Classical music enthusiast learning piano. Dreams of performing in concert halls.",
+      "interests": [
+        "Piano",
+        "Classical",
+        "Composition"
+      ],
+      "level": "Intermediate",
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "student-3",
+      "email": "david@moonriver.com",
+      "name": "David Kim",
+      "bio": "Aspiring singer-songwriter learning vocal techniques and music theory.",
+      "interests": [
+        "Vocal",
+        "Songwriting",
+        "Guitar"
+      ],
+      "level": "Beginner",
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "student-4",
+      "email": "lisa@moonriver.com",
+      "name": "Lisa Anderson",
+      "bio": "Professional drummer expanding skills in different genres and music theory.",
+      "interests": [
+        "Drums",
+        "Jazz",
+        "Music Theory"
+      ],
+      "level": "Advanced",
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop"
+    },
+    {
+      "id": "student-5",
+      "email": "tom@moonriver.com",
+      "name": "Tom Wilson",
+      "bio": "Multi-instrumentalist learning various instruments and music production.",
+      "interests": [
+        "Guitar",
+        "Piano",
+        "Production"
+      ],
+      "level": "Intermediate",
+      "isActive": true,
+      "profileImage": "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&h=200&fit=crop"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "enrollment-1",
+      "studentEmail": "student@moonriver.com",
+      "courseId": "course-1",
+      "progress": 35,
+      "status": "active",
+      "enrolledAt": "2024-01-16T00:00:00Z"
+    },
+    {
+      "id": "enrollment-2",
+      "studentEmail": "student@moonriver.com",
+      "courseId": "course-4",
+      "progress": 60,
+      "status": "active",
+      "enrolledAt": "2024-02-12T00:00:00Z"
+    },
+    {
+      "id": "enrollment-3",
+      "studentEmail": "maria@moonriver.com",
+      "courseId": "course-2",
+      "progress": 25,
+      "status": "active",
+      "enrolledAt": "2024-01-22T00:00:00Z"
+    },
+    {
+      "id": "enrollment-4",
+      "studentEmail": "david@moonriver.com",
+      "courseId": "course-3",
+      "progress": 45,
+      "status": "active",
+      "enrolledAt": "2024-02-03T00:00:00Z"
+    },
+    {
+      "id": "enrollment-5",
+      "studentEmail": "lisa@moonriver.com",
+      "courseId": "course-7",
+      "progress": 80,
+      "status": "active",
+      "enrolledAt": "2024-02-16T00:00:00Z"
+    },
+    {
+      "id": "enrollment-6",
+      "studentEmail": "tom@moonriver.com",
+      "courseId": "course-6",
+      "progress": 50,
+      "status": "active",
+      "enrolledAt": "2024-03-05T00:00:00Z"
+    },
+    {
+      "id": "enrollment-7",
+      "studentEmail": "maria@moonriver.com",
+      "courseId": "course-8",
+      "progress": 15,
+      "status": "active",
+      "enrolledAt": "2024-03-12T00:00:00Z"
+    },
+    {
+      "id": "enrollment-8",
+      "studentEmail": "student@moonriver.com",
+      "courseId": "course-5",
+      "progress": 20,
+      "status": "active",
+      "enrolledAt": "2024-03-01T00:00:00Z"
+    },
+    {
+      "id": "enrollment-1773307028490",
+      "studentEmail": "yangfei0777@gmail.com",
+      "courseId": "course-2",
+      "progress": 0,
+      "status": "active",
+      "enrolledAt": "2026-03-12T09:17:08.490Z"
+    }
+  ],
+  "userProfiles": [],
+  "questionnaires": [
+    {
+      "id": "questionnaire-1773308052034",
+      "email": "yangfei0777@gmail.com",
+      "role": "Student",
+      "instruments": [
+        "Guitar",
+        "Drums"
+      ],
+      "genres": [
+        "Jazz",
+        "Pop"
+      ],
+      "availability": [
+        "Weekday mornings"
+      ],
+      "bio": "",
+      "completedAt": "2026-03-12T09:34:12.034Z",
+      "updatedAt": "2026-03-12T10:19:02.759Z",
+      "skillLevel": "Beginner",
+      "goals": [
+        "Play in a band"
+      ],
+      "learningStyle": [
+        "Hands-on"
+      ],
+      "budget": "medium"
+    },
+    {
+      "id": "questionnaire-seed-c1",
+      "email": "creator@moonriver.com",
+      "role": "Creator",
+      "instruments": [
+        "Piano",
+        "Guitar",
+        "Theory"
+      ],
+      "genres": [
+        "Classical",
+        "Jazz",
+        "Pop"
+      ],
+      "availability": [
+        "Weekday evenings",
+        "Saturday morning",
+        "Saturday afternoon"
+      ],
+      "bio": "Classical pianist with 15 years of teaching experience. I love helping beginners discover the joy of music and guiding advanced students to new heights.",
+      "completedAt": "2024-01-10T00:00:00Z",
+      "updatedAt": "2024-01-10T00:00:00Z",
+      "teachingLevels": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "teachingStyle": [
+        "Structured",
+        "Visual",
+        "Hands-on"
+      ],
+      "maxStudents": 15
+    },
+    {
+      "id": "questionnaire-seed-c2",
+      "email": "michael@moonriver.com",
+      "role": "Creator",
+      "instruments": [
+        "Vocal",
+        "Production",
+        "Piano"
+      ],
+      "genres": [
+        "Pop",
+        "R&B",
+        "Jazz",
+        "Rock"
+      ],
+      "availability": [
+        "Weekday afternoons",
+        "Weekday evenings",
+        "Sunday morning"
+      ],
+      "bio": "Former Broadway performer and Berklee graduate. I specialize in vocal technique, stage presence, and modern music production.",
+      "completedAt": "2024-01-12T00:00:00Z",
+      "updatedAt": "2024-01-12T00:00:00Z",
+      "teachingLevels": [
+        "Beginner",
+        "Intermediate"
+      ],
+      "teachingStyle": [
+        "Freeform",
+        "Ear-training",
+        "Project-based"
+      ],
+      "maxStudents": 12
+    },
+    {
+      "id": "questionnaire-seed-c3",
+      "email": "emily@moonriver.com",
+      "role": "Creator",
+      "instruments": [
+        "Theory",
+        "Piano"
+      ],
+      "genres": [
+        "Classical",
+        "Jazz",
+        "Folk"
+      ],
+      "availability": [
+        "Weekday mornings",
+        "Weekday afternoons",
+        "Saturday morning"
+      ],
+      "bio": "PhD in Musicology from Harvard. I make music theory accessible and fun through hands-on composition exercises.",
+      "completedAt": "2024-01-15T00:00:00Z",
+      "updatedAt": "2024-01-15T00:00:00Z",
+      "teachingLevels": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "teachingStyle": [
+        "Structured",
+        "Theory-heavy",
+        "Visual"
+      ],
+      "maxStudents": 20
+    },
+    {
+      "id": "questionnaire-seed-c4",
+      "email": "james@moonriver.com",
+      "role": "Creator",
+      "instruments": [
+        "Drums",
+        "Bass"
+      ],
+      "genres": [
+        "Rock",
+        "Jazz",
+        "Blues",
+        "Pop"
+      ],
+      "availability": [
+        "Weekday mornings",
+        "Weekday evenings",
+        "Sunday afternoon"
+      ],
+      "bio": "Professional drummer with 18 years of touring and teaching experience. I teach rhythm, groove, and musicality across all styles.",
+      "completedAt": "2024-01-18T00:00:00Z",
+      "updatedAt": "2024-01-18T00:00:00Z",
+      "teachingLevels": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "teachingStyle": [
+        "Hands-on",
+        "Freeform",
+        "Ear-training"
+      ],
+      "maxStudents": 10
+    },
+    {
+      "id": "questionnaire-seed-s1",
+      "email": "student@moonriver.com",
+      "role": "Student",
+      "instruments": [
+        "Guitar",
+        "Theory"
+      ],
+      "genres": [
+        "Rock",
+        "Blues",
+        "Pop"
+      ],
+      "availability": [
+        "Weekday evenings",
+        "Saturday morning"
+      ],
+      "bio": "Passionate about learning guitar and music theory. Started playing 6 months ago and loving it!",
+      "completedAt": "2024-01-16T00:00:00Z",
+      "updatedAt": "2024-01-16T00:00:00Z",
+      "skillLevel": "Beginner",
+      "goals": [
+        "Learn fundamentals",
+        "Play in a band"
+      ],
+      "learningStyle": [
+        "Hands-on",
+        "Visual"
+      ],
+      "budget": "medium"
+    },
+    {
+      "id": "questionnaire-seed-s2",
+      "email": "maria@moonriver.com",
+      "role": "Student",
+      "instruments": [
+        "Piano",
+        "Theory"
+      ],
+      "genres": [
+        "Classical",
+        "Jazz"
+      ],
+      "availability": [
+        "Weekday afternoons",
+        "Saturday afternoon"
+      ],
+      "bio": "Classical music enthusiast dreaming of performing in concert halls. Looking for a rigorous and inspiring teacher.",
+      "completedAt": "2024-01-20T00:00:00Z",
+      "updatedAt": "2024-01-20T00:00:00Z",
+      "skillLevel": "Intermediate",
+      "goals": [
+        "Perform solo",
+        "Music theory"
+      ],
+      "learningStyle": [
+        "Structured",
+        "Theory-first"
+      ],
+      "budget": "high"
+    },
+    {
+      "id": "questionnaire-seed-s3",
+      "email": "david@moonriver.com",
+      "role": "Student",
+      "instruments": [
+        "Vocal",
+        "Guitar"
+      ],
+      "genres": [
+        "Pop",
+        "R&B",
+        "Folk"
+      ],
+      "availability": [
+        "Weekday evenings",
+        "Sunday morning"
+      ],
+      "bio": "Aspiring singer-songwriter. I want to develop my voice and learn to accompany myself on guitar.",
+      "completedAt": "2024-02-01T00:00:00Z",
+      "updatedAt": "2024-02-01T00:00:00Z",
+      "skillLevel": "Beginner",
+      "goals": [
+        "Write songs",
+        "Perform solo"
+      ],
+      "learningStyle": [
+        "By ear",
+        "Freeform"
+      ],
+      "budget": "medium"
+    },
+    {
+      "id": "questionnaire-seed-s4",
+      "email": "lisa@moonriver.com",
+      "role": "Student",
+      "instruments": [
+        "Drums",
+        "Theory"
+      ],
+      "genres": [
+        "Jazz",
+        "Rock",
+        "Blues"
+      ],
+      "availability": [
+        "Weekday mornings",
+        "Weekday evenings"
+      ],
+      "bio": "Advanced drummer expanding into jazz and odd time signatures. Looking for a mentor to push my limits.",
+      "completedAt": "2024-02-10T00:00:00Z",
+      "updatedAt": "2024-02-10T00:00:00Z",
+      "skillLevel": "Advanced",
+      "goals": [
+        "Music theory",
+        "Play in a band"
+      ],
+      "learningStyle": [
+        "Hands-on",
+        "Ear-training"
+      ],
+      "budget": "high"
+    },
+    {
+      "id": "questionnaire-seed-s5",
+      "email": "tom@moonriver.com",
+      "role": "Student",
+      "instruments": [
+        "Guitar",
+        "Piano",
+        "Production"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop",
+        "Rock"
+      ],
+      "availability": [
+        "Weekday afternoons",
+        "Saturday afternoon",
+        "Sunday afternoon"
+      ],
+      "bio": "Multi-instrumentalist getting into music production. Want to learn how to record and mix my own tracks.",
+      "completedAt": "2024-03-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "skillLevel": "Intermediate",
+      "goals": [
+        "Record music",
+        "Write songs"
+      ],
+      "learningStyle": [
+        "Project-based",
+        "Hands-on"
+      ],
+      "budget": "medium"
+    },
+    {
+      "id": "questionnaire-1773311309503",
+      "email": "yangfei077@gmail.com",
+      "role": "Creator",
+      "instruments": [
+        "Saxophone",
+        "Piano",
+        "Theory"
+      ],
+      "genres": [
+        "R&B",
+        "Electronic"
+      ],
+      "availability": [
+        "Weekday mornings"
+      ],
+      "bio": "",
+      "completedAt": "2026-03-12T10:28:29.503Z",
+      "updatedAt": "2026-03-12T10:28:29.503Z",
+      "teachingLevels": [],
+      "teachingStyle": [
+        "Ear-training"
+      ],
+      "maxStudents": 15
+    }
+  ],
+  "matches": [
+    {
+      "id": "match-1773310321941-i4brz",
+      "userEmail": "yangfei0777@gmail.com",
+      "matchEmail": "creator@moonriver.com",
+      "compatibilityScore": 66,
+      "reasons": [
+        "Both share interest in Guitar",
+        "Shared genres: Jazz, Pop",
+        "Teaches at your Beginner level"
+      ],
+      "matchProfile": {
+        "name": "Sarah Johnson",
+        "email": "creator@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop",
+        "bio": "Classical pianist with 15 years of teaching experience. I love helping beginners discover the joy of music and guiding advanced students to new heights.",
+        "instruments": [
+          "Piano",
+          "Guitar",
+          "Theory"
+        ],
+        "genres": [
+          "Classical",
+          "Jazz",
+          "Pop"
+        ],
+        "specialties": [
+          "Piano",
+          "Guitar",
+          "Jazz",
+          "Music Theory"
+        ],
+        "experience": "15 years",
+        "rating": 4.9,
+        "skillLevel": null
+      },
+      "generatedAt": "2026-03-12T10:12:01.941Z"
+    },
+    {
+      "id": "match-1773310321941-16xp5",
+      "userEmail": "yangfei0777@gmail.com",
+      "matchEmail": "michael@moonriver.com",
+      "compatibilityScore": 36,
+      "reasons": [
+        "Shared genres: Jazz, Pop",
+        "Teaches at your Beginner level"
+      ],
+      "matchProfile": {
+        "name": "Michael Chen",
+        "email": "michael@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+        "bio": "Former Broadway performer and Berklee graduate. I specialize in vocal technique, stage presence, and modern music production.",
+        "instruments": [
+          "Vocal",
+          "Production",
+          "Piano"
+        ],
+        "genres": [
+          "Pop",
+          "R&B",
+          "Jazz",
+          "Rock"
+        ],
+        "specialties": [
+          "Vocal",
+          "Production",
+          "Performance"
+        ],
+        "experience": "12 years",
+        "rating": 4.8,
+        "skillLevel": null
+      },
+      "generatedAt": "2026-03-12T10:12:01.941Z"
+    },
+    {
+      "id": "match-1773310321941-sz234",
+      "userEmail": "yangfei0777@gmail.com",
+      "matchEmail": "emily@moonriver.com",
+      "compatibilityScore": 41,
+      "reasons": [
+        "Shared genres: Jazz",
+        "Teaches at your Beginner level",
+        "Available at the same times"
+      ],
+      "matchProfile": {
+        "name": "Dr. Emily Rodriguez",
+        "email": "emily@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
+        "bio": "PhD in Musicology from Harvard. I make music theory accessible and fun through hands-on composition exercises.",
+        "instruments": [
+          "Theory",
+          "Piano"
+        ],
+        "genres": [
+          "Classical",
+          "Jazz",
+          "Folk"
+        ],
+        "specialties": [
+          "Music Theory",
+          "Composition",
+          "Analysis"
+        ],
+        "experience": "20 years",
+        "rating": 4.9,
+        "skillLevel": null
+      },
+      "generatedAt": "2026-03-12T10:12:01.941Z"
+    },
+    {
+      "id": "match-1773310321941-cu7m5",
+      "userEmail": "yangfei0777@gmail.com",
+      "matchEmail": "james@moonriver.com",
+      "compatibilityScore": 81,
+      "reasons": [
+        "Both share interest in Drums",
+        "Shared genres: Jazz, Pop",
+        "Teaches at your Beginner level"
+      ],
+      "matchProfile": {
+        "name": "James Wilson",
+        "email": "james@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+        "bio": "Professional drummer with 18 years of touring and teaching experience. I teach rhythm, groove, and musicality across all styles.",
+        "instruments": [
+          "Drums",
+          "Bass"
+        ],
+        "genres": [
+          "Rock",
+          "Jazz",
+          "Blues",
+          "Pop"
+        ],
+        "specialties": [
+          "Drums",
+          "Percussion",
+          "Rhythm"
+        ],
+        "experience": "18 years",
+        "rating": 4.7,
+        "skillLevel": null
+      },
+      "generatedAt": "2026-03-12T10:12:01.941Z"
+    },
+    {
+      "id": "match-1773314069030-sc60v",
+      "userEmail": "yangfei077@gmail.com",
+      "matchEmail": "yangfei0777@gmail.com",
+      "compatibilityScore": 19,
+      "reasons": [
+        "Available at the same times"
+      ],
+      "matchProfile": {
+        "name": "Yangfei",
+        "email": "yangfei0777@gmail.com",
+        "image": "",
+        "bio": "",
+        "instruments": [
+          "Guitar",
+          "Drums"
+        ],
+        "genres": [
+          "Jazz",
+          "Pop"
+        ],
+        "specialties": [],
+        "experience": "",
+        "rating": null,
+        "skillLevel": "Beginner"
+      },
+      "generatedAt": "2026-03-12T11:14:29.030Z"
+    },
+    {
+      "id": "match-1773314069030-9zitc",
+      "userEmail": "yangfei077@gmail.com",
+      "matchEmail": "student@moonriver.com",
+      "compatibilityScore": 14,
+      "reasons": [
+        "Both share interest in Theory"
+      ],
+      "matchProfile": {
+        "name": "Alex Thompson",
+        "email": "student@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
+        "bio": "Passionate about learning guitar and music theory. Started playing 6 months ago and loving it!",
+        "instruments": [
+          "Guitar",
+          "Theory"
+        ],
+        "genres": [
+          "Rock",
+          "Blues",
+          "Pop"
+        ],
+        "specialties": [],
+        "experience": "",
+        "rating": null,
+        "skillLevel": "Beginner"
+      },
+      "generatedAt": "2026-03-12T11:14:29.030Z"
+    },
+    {
+      "id": "match-1773314069030-kkwuf",
+      "userEmail": "yangfei077@gmail.com",
+      "matchEmail": "maria@moonriver.com",
+      "compatibilityScore": 24,
+      "reasons": [
+        "Both share interest in Piano, Theory"
+      ],
+      "matchProfile": {
+        "name": "Maria Garcia",
+        "email": "maria@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop",
+        "bio": "Classical music enthusiast dreaming of performing in concert halls. Looking for a rigorous and inspiring teacher.",
+        "instruments": [
+          "Piano",
+          "Theory"
+        ],
+        "genres": [
+          "Classical",
+          "Jazz"
+        ],
+        "specialties": [],
+        "experience": "",
+        "rating": null,
+        "skillLevel": "Intermediate"
+      },
+      "generatedAt": "2026-03-12T11:14:29.030Z"
+    },
+    {
+      "id": "match-1773314069030-ss2ro",
+      "userEmail": "yangfei077@gmail.com",
+      "matchEmail": "david@moonriver.com",
+      "compatibilityScore": 14,
+      "reasons": [
+        "Shared genres: R&B"
+      ],
+      "matchProfile": {
+        "name": "David Kim",
+        "email": "david@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
+        "bio": "Aspiring singer-songwriter. I want to develop my voice and learn to accompany myself on guitar.",
+        "instruments": [
+          "Vocal",
+          "Guitar"
+        ],
+        "genres": [
+          "Pop",
+          "R&B",
+          "Folk"
+        ],
+        "specialties": [],
+        "experience": "",
+        "rating": null,
+        "skillLevel": "Beginner"
+      },
+      "generatedAt": "2026-03-12T11:14:29.030Z"
+    },
+    {
+      "id": "match-1773314069030-jku31",
+      "userEmail": "yangfei077@gmail.com",
+      "matchEmail": "lisa@moonriver.com",
+      "compatibilityScore": 44,
+      "reasons": [
+        "Both share interest in Theory",
+        "Compatible teaching style: Ear-training",
+        "Available at the same times"
+      ],
+      "matchProfile": {
+        "name": "Lisa Anderson",
+        "email": "lisa@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop",
+        "bio": "Advanced drummer expanding into jazz and odd time signatures. Looking for a mentor to push my limits.",
+        "instruments": [
+          "Drums",
+          "Theory"
+        ],
+        "genres": [
+          "Jazz",
+          "Rock",
+          "Blues"
+        ],
+        "specialties": [],
+        "experience": "",
+        "rating": null,
+        "skillLevel": "Advanced"
+      },
+      "generatedAt": "2026-03-12T11:14:29.030Z"
+    },
+    {
+      "id": "match-1773314069030-wec6l",
+      "userEmail": "yangfei077@gmail.com",
+      "matchEmail": "tom@moonriver.com",
+      "compatibilityScore": 24,
+      "reasons": [
+        "Both share interest in Piano",
+        "Shared genres: Electronic"
+      ],
+      "matchProfile": {
+        "name": "Tom Wilson",
+        "email": "tom@moonriver.com",
+        "image": "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&h=200&fit=crop",
+        "bio": "Multi-instrumentalist getting into music production. Want to learn how to record and mix my own tracks.",
+        "instruments": [
+          "Guitar",
+          "Piano",
+          "Production"
+        ],
+        "genres": [
+          "Electronic",
+          "Pop",
+          "Rock"
+        ],
+        "specialties": [],
+        "experience": "",
+        "rating": null,
+        "skillLevel": "Intermediate"
+      },
+      "generatedAt": "2026-03-12T11:14:29.030Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-1773312607873-csktq",
+      "type": "course_invite",
+      "recipientEmail": "yangfei0777@gmail.com",
+      "senderEmail": "yangfei077@gmail.com",
+      "senderName": "Yang",
+      "title": "Course invitation",
+      "message": "Yang invited you to join their course \"My Course\".",
+      "metadata": {
+        "courseId": "course-1773311372507",
+        "courseTitle": "My Course",
+        "creatorEmail": "yangfei077@gmail.com"
+      },
+      "read": true,
+      "createdAt": "2026-03-12T10:50:07.873Z"
+    },
+    {
+      "id": "notif-1773314197372-vgeoz",
+      "type": "course_invite",
+      "recipientEmail": "yangfei0777@gmail.com",
+      "senderEmail": "yangfei077@gmail.com",
+      "senderName": "Yang",
+      "title": "Course invitation",
+      "message": "Yang invited you to join their course \"My Course\".",
+      "metadata": {
+        "courseId": "course-1773311372507",
+        "courseTitle": "My Course",
+        "creatorEmail": "yangfei077@gmail.com"
+      },
+      "read": false,
+      "createdAt": "2026-03-12T11:16:37.372Z"
+    }
+  ]
+}
