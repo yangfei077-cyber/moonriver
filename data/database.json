@@ -183,24 +183,6 @@
       ],
       "isActive": true,
       "createdAt": "2024-03-10T00:00:00Z"
-    },
-    {
-      "id": "course-1773311372507",
-      "title": "My Course",
-      "description": "yes",
-      "category": "Piano",
-      "level": "Intermediate",
-      "duration": "",
-      "price": 0,
-      "maxStudents": 10,
-      "currentStudents": 0,
-      "schedule": "",
-      "topics": [],
-      "creatorEmail": "yangfei077@gmail.com",
-      "creatorName": "Yang",
-      "image": "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
-      "isActive": true,
-      "createdAt": "2026-03-12T10:29:32.507Z"
     }
   ],
   "creators": [
@@ -743,7 +725,7 @@
     {
       "id": "questionnaire-1773311309503",
       "email": "yangfei077@gmail.com",
-      "role": "Creator",
+      "role": "Student",
       "instruments": [
         "Saxophone",
         "Piano",
@@ -759,11 +741,15 @@
       "bio": "",
       "completedAt": "2026-03-12T10:28:29.503Z",
       "updatedAt": "2026-03-12T10:28:29.503Z",
-      "teachingLevels": [],
-      "teachingStyle": [
+      "skillLevel": "Intermediate",
+      "goals": [
+        "Learn fundamentals",
+        "Play in a band"
+      ],
+      "learningStyle": [
         "Ear-training"
       ],
-      "maxStudents": 15
+      "budget": "medium"
     }
   ],
   "matches": [
@@ -1088,38 +1074,5 @@
       "generatedAt": "2026-03-12T11:14:29.030Z"
     }
   ],
-  "notifications": [
-    {
-      "id": "notif-1773312607873-csktq",
-      "type": "course_invite",
-      "recipientEmail": "yangfei0777@gmail.com",
-      "senderEmail": "yangfei077@gmail.com",
-      "senderName": "Yang",
-      "title": "Course invitation",
-      "message": "Yang invited you to join their course \"My Course\".",
-      "metadata": {
-        "courseId": "course-1773311372507",
-        "courseTitle": "My Course",
-        "creatorEmail": "yangfei077@gmail.com"
-      },
-      "read": true,
-      "createdAt": "2026-03-12T10:50:07.873Z"
-    },
-    {
-      "id": "notif-1773314197372-vgeoz",
-      "type": "course_invite",
-      "recipientEmail": "yangfei0777@gmail.com",
-      "senderEmail": "yangfei077@gmail.com",
-      "senderName": "Yang",
-      "title": "Course invitation",
-      "message": "Yang invited you to join their course \"My Course\".",
-      "metadata": {
-        "courseId": "course-1773311372507",
-        "courseTitle": "My Course",
-        "creatorEmail": "yangfei077@gmail.com"
-      },
-      "read": false,
-      "createdAt": "2026-03-12T11:16:37.372Z"
-    }
-  ]
+  "notifications": []
 }

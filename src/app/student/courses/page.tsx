@@ -32,6 +32,7 @@ type Tab = 'my' | 'browse';
 function StudentCoursesContent() {
   const searchParams = useSearchParams();
   const courseIdFromUrl = searchParams.get('courseId');
+  const instructorFilter = searchParams.get('instructor');
   const courseCardRef = useRef<HTMLDivElement | null>(null);
 
   const [courses, setCourses] = useState<Course[]>([]);
@@ -41,7 +42,7 @@ function StudentCoursesContent() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [tab, setTab] = useState<Tab>(courseIdFromUrl ? 'browse' : 'my');
+  const [tab, setTab] = useState<Tab>(courseIdFromUrl || instructorFilter ? 'browse' : 'my');
   const [enrollingId, setEnrollingId] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>('');
   const [levelFilter, setLevelFilter] = useState<string>('');
@@ -87,7 +88,11 @@ function StudentCoursesContent() {
   }, [courseIdFromUrl, loading, courses, tab]);
 
   const enrolledCourses = courses.filter((c) => c.isEnrolled);
-  const browseCourses = courses.filter((c) => !c.isEnrolled);
+  const browseCourses = courses.filter((c) => {
+    if (c.isEnrolled) return false;
+    if (instructorFilter) return c.creatorEmail === instructorFilter;
+    return true;
+  });
 
   const handleEnroll = async (courseId: string) => {
     try {
@@ -147,8 +152,8 @@ function StudentCoursesContent() {
         <Sidebar />
         <main className="flex-1 p-6 lg:p-10 overflow-y-auto">
           <DashboardHeader
-            title="My Courses"
-            subtitle="Manage your enrollments and discover new courses."
+            title={instructorFilter ? 'Instructor Courses' : 'My Courses'}
+            subtitle={instructorFilter ? `Courses by your matched instructor` : 'Manage your enrollments and discover new courses.'}
           />
 
           {error && (

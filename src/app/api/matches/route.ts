@@ -155,12 +155,17 @@ export async function GET(request: NextRequest) {
       goals: userQ.goals,
     };
 
+    const oppositeRole = role === 'Student' ? 'Creator' : 'Student';
+
     if (!refresh) {
       const cached = await sql`
-        SELECT * FROM matches
-        WHERE user_email = ${email}
-        AND generated_at > NOW() - INTERVAL '7 days'
-        ORDER BY compatibility_score DESC
+        SELECT m.* FROM matches m
+        JOIN questionnaires q ON q.email = m.match_email
+        WHERE m.user_email = ${email}
+        AND m.match_email != ${email}
+        AND q.role = ${oppositeRole}
+        AND m.generated_at > NOW() - INTERVAL '7 days'
+        ORDER BY m.compatibility_score DESC
       `;
       if (cached.length > 0) {
         const matches = cached.map((m: any) => ({
@@ -176,8 +181,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    const oppositeRole = role === 'Student' ? 'Creator' : 'Student';
-    const candidates = await sql`SELECT * FROM questionnaires WHERE role = ${oppositeRole}`;
+    const candidates = await sql`SELECT * FROM questionnaires WHERE role = ${oppositeRole} AND email != ${email}`;
 
     if (candidates.length === 0) return NextResponse.json({ success: true, matches: [] });
 

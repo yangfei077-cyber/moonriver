@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Sidebar from '@/components/Sidebar';
 import DashboardHeader from '@/components/DashboardHeader';
 import { useUserContext } from '@/contexts/UserContext';
-import { Heart, Star, Clock, Music, Calendar, Sparkles, Send, Loader2 } from 'lucide-react';
+import { Heart, Star, Clock, Music, Sparkles, BookOpen } from 'lucide-react';
 
 interface Match {
   id: string;
@@ -52,8 +52,6 @@ export default function StudentMatchesPage() {
   const { user } = useUserContext();
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
-  const [invitingId, setInvitingId] = useState<string | null>(null);
-  const [invitedIds, setInvitedIds] = useState<Set<string>>(new Set());
 
   const fetchMatches = async (refresh = false) => {
     if (!user?.email) return;
@@ -77,33 +75,6 @@ export default function StudentMatchesPage() {
   };
 
   useEffect(() => { fetchMatches(); }, [user?.email]);
-
-  const handleInviteToLessons = async (match: Match) => {
-    if (!user?.email) return;
-    setInvitingId(match.id);
-    try {
-      const res = await fetch('/api/notifications', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'create',
-          recipientEmail: match.matchProfile.email,
-          type: 'lesson_invite',
-          title: 'Lesson invitation',
-          message: `${user.name || user.email} would like to take lessons with you. They found you through AI matching and are interested in learning from you.`,
-          metadata: { matchId: match.id, studentEmail: user.email },
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to send invite');
-      setInvitedIds((prev) => new Set([...prev, match.id]));
-    } catch (err) {
-      console.error(err);
-      alert(err instanceof Error ? err.message : 'Failed to send invite');
-    } finally {
-      setInvitingId(null);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background-light">
@@ -202,31 +173,12 @@ export default function StudentMatchesPage() {
 
                       {/* Actions */}
                       <div className="flex gap-3 mt-4">
-                        {invitedIds.has(match.id) ? (
-                          <span className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
-                            <Send className="w-4 h-4" />
-                            Invite sent
-                          </span>
-                        ) : (
-                          <button
-                            onClick={() => handleInviteToLessons(match)}
-                            disabled={!!invitingId}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-dash-primary text-white rounded-lg text-sm font-medium hover:bg-orange-600 transition-colors disabled:opacity-70"
-                          >
-                            {invitingId === match.id ? (
-                              <Loader2 className="w-4 h-4 animate-spin" />
-                            ) : (
-                              <Send className="w-4 h-4" />
-                            )}
-                            Invite to Lessons
-                          </button>
-                        )}
                         <Link
-                          href="/student/courses"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-orange-200 text-dash-primary rounded-lg text-sm font-medium hover:bg-orange-50 transition-colors"
+                          href={`/student/courses?instructor=${encodeURIComponent(match.matchProfile.email)}`}
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-dash-primary text-white rounded-lg text-sm font-medium hover:bg-orange-600 transition-colors"
                         >
-                          <Music className="w-4 h-4" />
-                          View Courses
+                          <BookOpen className="w-4 h-4" />
+                          View Their Courses
                         </Link>
                       </div>
                     </div>
