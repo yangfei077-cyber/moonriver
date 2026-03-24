@@ -4,13 +4,27 @@ A full-featured music education platform built with **Next.js 15**, **Auth0** au
 
 ## Screenshots
 
-| Student Dashboard | AI Instructor Matching |
-|:-:|:-:|
-| ![Student Dashboard](docs/screenshots/screenshot-3.png) | ![Find Instructors](docs/screenshots/screenshot-4.png) |
+### Role-Based Dashboards
 
-| Schedule & Google Calendar | Admin Command Center |
+| Student Dashboard | Creator Studio |
 |:-:|:-:|
-| ![Schedule](docs/screenshots/screenshot-2.png) | ![Admin Dashboard](docs/screenshots/screenshot-1.png) |
+| ![Student Dashboard](docs/screenshots/student-dashboard.jpg) | ![Creator RAG Bot](docs/screenshots/creator-rag-bot.jpg) |
+
+| Admin Command Center | Admin User Management |
+|:-:|:-:|
+| ![Admin Dashboard](docs/screenshots/admin-dashboard.jpg) | ![Admin User Management](docs/screenshots/admin-user-management.jpg) |
+
+### FGA Role-Scoped RAG Bots
+
+Each role gets an AI assistant that **only sees data it's authorized to access** via Auth0 FGA.
+
+| Student AI Learning Assistant | Creator AI Teaching Assistant |
+|:-:|:-:|
+| ![Student RAG Bot](docs/screenshots/student-rag-bot.jpg) | ![Creator RAG Bot](docs/screenshots/creator-rag-bot.jpg) |
+
+| Admin AI-Powered Search |
+|:-:|
+| ![Admin RAG Search](docs/screenshots/admin-rag-search.jpg) |
 
 ## Demo Accounts
 
@@ -58,11 +72,18 @@ A full-featured music education platform built with **Next.js 15**, **Auth0** au
 - Sync Moonriver appointments to Google Calendar
 - Fetch Google Calendar events into the platform
 
-### AI-Powered RAG Search (Admin)
-- Natural language search across all platform data
-- Search appointments, courses, enrollments, students, creators
-- Powered by OpenRouter API with fallback responses
-- Context-aware responses based on user role
+### AI-Powered RAG Search (All Roles)
+- Every role gets a dedicated AI assistant scoped to their FGA permissions
+- **Admin**: Natural language search across all platform data (all users, courses, revenue)
+- **Creator**: Ask about your own students, courses, appointments, and stats
+- **Student**: Ask about your own lessons, enrollments, and progress
+- Powered by OpenRouter API; each bot only surfaces data the role is authorized to see
+
+### Auth0 FGA (Fine-Grained Authorization)
+- Relationship-based access control via Auth0 FGA
+- Authorization model covers `course`, `appointment`, and `match` resource types
+- FGA checks wired into all API routes (courses, appointments, matches)
+- Per-role RAG bots enforce FGA at the data-fetch layer — no cross-role data leakage
 
 ### Course Management
 - Browse course catalog with filters (level, category)

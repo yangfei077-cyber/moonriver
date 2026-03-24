@@ -1,60 +1,128 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
+import { getDataAccessScope, type DataAccessScope } from '@/lib/fga';
 
-async function buildKnowledgeBase(roles: string[]) {
+async function buildKnowledgeBase(roles: string[], scope: DataAccessScope, userEmail?: string) {
   if (!sql) return { courses: [], creators: [] };
 
-  const courses = await sql`SELECT * FROM courses WHERE is_active = true`;
-  const creators = await sql`SELECT name, email, specialties, experience, rating, students_count as "studentsCount" FROM creators`;
-  const appointments = await sql`
-    SELECT creator_email as "creatorEmail", creator_name as "creatorName", student_email as "studentEmail",
-      student_name as "studentName", title, start_time as "startTime", end_time as "endTime", status
-    FROM appointments
-  `;
+  const db = sql as any;
+  const identityEmail = userEmail || scope.restrictToEmail || '';
+  const managedCourseIds = scope.managedCourseIds || [];
+  const managedCourseArray = managedCourseIds.length ? db.array(managedCourseIds, 'text') : null;
+  const isCreatorScope = scope.level === 'creator';
+
+  let courses: any[] = [];
+  if (isCreatorScope) {
+    if (managedCourseArray) {
+      courses = await db`SELECT * FROM courses WHERE id = ANY(${managedCourseArray})`;
+    } else if (identityEmail) {
+      courses = await db`SELECT * FROM courses WHERE creator_email = ${identityEmail}`;
+    }
+  } else {
+    courses = await db`SELECT * FROM courses WHERE is_active = true`;
+  }
+
+  const creators = await db`SELECT name, email, specialties, experience, rating, students_count as "studentsCount" FROM creators`;
 
   const knowledge: any = {
-    courses: courses.map((c: any) => ({
-      name: c.title,
-      title: c.title,
-      level: c.level,
-      creatorName: c.creator_name || c.creatorName,
-      price: c.price,
-      currentStudents: c.current_students ?? c.currentStudents,
-      maxStudents: c.max_students ?? c.maxStudents,
-    })),
-    creators: creators.map((c: any) => ({
+    accessLevel: scope.level,
+  };
+
+  // Courses: everyone can see courses (filtered by scope when needed)
+  knowledge.courses = courses.map((c: any) => ({
+    name: c.title,
+    title: c.title,
+    level: c.level,
+    creatorName: c.creator_name || c.creatorName,
+    creatorEmail: c.creator_email || c.creatorEmail,
+    price: c.price,
+    currentStudents: c.current_students ?? c.currentStudents,
+    maxStudents: c.max_students ?? c.maxStudents,
+  }));
+
+  // Creators: everyone can see creator profiles
+  if (scope.canViewAllCreators) {
+    knowledge.creators = creators.map((c: any) => ({
       name: c.name,
       email: c.email,
       specialties: c.specialties,
       experience: c.experience,
       rating: c.rating,
       studentsCount: c.studentsCount,
-    })),
-  };
+    }));
+  }
 
-  if (roles.includes('Admin')) {
-    const students = await sql`SELECT * FROM students`;
-    const enrollments = await sql`SELECT * FROM enrollments`;
-    knowledge.allStudents = students;
-    knowledge.allEnrollments = enrollments;
+  // Appointments: scoped by role
+  if (scope.canViewAllAppointments) {
+    const appointments = await db`
+      SELECT creator_email as "creatorEmail", creator_name as "creatorName", student_email as "studentEmail",
+        student_name as "studentName", title, start_time as "startTime", end_time as "endTime", status
+      FROM appointments
+    `;
     knowledge.allAppointments = appointments;
+  } else if (scope.canViewOwnAppointments && scope.restrictToEmail) {
+    const appointments = await db`
+      SELECT creator_email as "creatorEmail", creator_name as "creatorName", student_email as "studentEmail",
+        student_name as "studentName", title, start_time as "startTime", end_time as "endTime", status
+      FROM appointments
+      WHERE student_email = ${scope.restrictToEmail} OR creator_email = ${scope.restrictToEmail}
+    `;
+    knowledge.myAppointments = appointments;
+  }
+
+  // Students: admin sees all, creators only see their students
+  if (scope.canViewAllStudents) {
+    if (scope.canViewPlatformStats || !isCreatorScope || !managedCourseArray) {
+      knowledge.allStudents = await db`SELECT * FROM students`;
+    } else {
+      knowledge.managedStudents = await db`
+        SELECT DISTINCT s.*
+        FROM students s
+        JOIN enrollments e ON e.student_email = s.email
+        WHERE e.course_id = ANY(${managedCourseArray})
+      `;
+    }
+  }
+
+  // Enrollments: scoped by role
+  if (scope.canViewAllEnrollments) {
+    knowledge.allEnrollments = await db`SELECT * FROM enrollments`;
+  } else if (isCreatorScope && managedCourseArray) {
+    knowledge.managedEnrollments = await db`
+      SELECT * FROM enrollments WHERE course_id = ANY(${managedCourseArray})
+    `;
+  } else if (scope.canViewOwnEnrollments && scope.restrictToEmail) {
+    knowledge.myEnrollments = await db`
+      SELECT * FROM enrollments WHERE student_email = ${scope.restrictToEmail}
+    `;
+  }
+
+  // Platform stats: admin only
+  if (scope.canViewPlatformStats) {
+    const students = knowledge.allStudents || await db`SELECT COUNT(*)::int as count FROM students`;
+    const enrollments = knowledge.allEnrollments || await db`SELECT COUNT(*)::int as count FROM enrollments`;
+    const appointments = knowledge.allAppointments || await db`SELECT COUNT(*)::int as count FROM appointments`;
+
     knowledge.statistics = {
       totalCourses: courses.length,
-      totalStudents: students.length,
+      totalStudents: Array.isArray(students) ? students.length : students[0]?.count,
       totalCreators: creators.length,
-      totalEnrollments: enrollments.length,
-      totalAppointments: appointments.length,
-      activeAppointments: appointments.filter((a: any) => a.status !== 'cancelled').length,
+      totalEnrollments: Array.isArray(enrollments) ? enrollments.length : enrollments[0]?.count,
+      totalAppointments: Array.isArray(appointments) ? appointments.length : appointments[0]?.count,
+      activeAppointments: Array.isArray(appointments)
+        ? appointments.filter((a: any) => a.status !== 'cancelled').length
+        : null,
     };
   }
 
-  if (roles.includes('Creator')) {
-    knowledge.myStudentsData = await sql`SELECT * FROM students`;
-    knowledge.enrollmentData = await sql`SELECT * FROM enrollments`;
-    knowledge.appointmentData = appointments;
+  // Revenue: admin only
+  if (scope.canViewRevenue) {
+    const revenue = await db`SELECT SUM(price) as total FROM courses WHERE is_active = true`;
+    knowledge.revenue = revenue[0]?.total || 0;
   }
 
-  if (roles.includes('Student')) {
+  // Student-specific recommendations
+  if (scope.level === 'student' && scope.restrictToEmail) {
     knowledge.courseRecommendations = [
       'Start with fundamentals courses if you are a beginner',
       'Music Theory complements any instrument study',
@@ -107,6 +175,10 @@ export async function POST(request: NextRequest) {
     if (!message) return NextResponse.json({ error: 'Message required' }, { status: 400 });
 
     const roles = userRoles || ['Student'];
+    const email = userInfo?.email || '';
+
+    // FGA: determine data access scope
+    const scope = await getDataAccessScope(email, roles);
 
     if (checkPrivacy(message, roles)) {
       return NextResponse.json({
@@ -115,18 +187,26 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const knowledge = await buildKnowledgeBase(roles);
+    const knowledge = await buildKnowledgeBase(roles, scope, email);
     const context = findRelevantContext(message, knowledge);
+
+    const accessDesc = scope.canViewPlatformStats
+      ? 'ADMIN ACCESS: You have full access to all platform data including students, creators, appointments, enrollments, statistics, and revenue. Help the admin search and analyze this data.'
+      : scope.canViewAllEnrollments
+        ? 'CREATOR ACCESS: You can see student data, enrollments, and appointments relevant to teaching. You cannot see platform-wide statistics or revenue.'
+        : 'STUDENT ACCESS: You can only see your own appointments, enrollments, and progress. You can browse courses and creator profiles. You cannot see other students\' data.';
 
     const systemPrompt = `You are the AI assistant for Moonriver Music Education Platform. You help users with music education questions.
 
 USER INFO:
 - Name: ${userInfo?.name || 'User'}
-- Email: ${userInfo?.email || ''}
+- Email: ${email}
 - Roles: ${roles.join(', ')}
+- Access Level: ${knowledge.accessLevel}
 
-${roles.includes('Admin') ? `ADMIN ACCESS: You have full access to all platform data including students, creators, appointments, enrollments, and statistics. Help the admin search and analyze this data.` : ''}
-${roles.includes('Creator') ? `CREATOR ACCESS: You can see student data, enrollments, and appointments relevant to teaching.` : ''}
+${accessDesc}
+
+IMPORTANT: Only share data that is included in the knowledge base below. If data is not present, it means the user does not have permission to see it. Do NOT fabricate data or claim access to data not provided.
 
 RELEVANT CONTEXT (from platform database):
 ${context}

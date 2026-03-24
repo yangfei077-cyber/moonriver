@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.1",
+  "type_definitions": [
+    {
+      "type": "user",
+      "relations": {}
+    },
+    {
+      "type": "platform",
+      "relations": {
+        "admin": {
+          "this": {}
+        },
+        "view_stats": {
+          "computedUserset": { "relation": "admin" }
+        },
+        "view_all_data": {
+          "computedUserset": { "relation": "admin" }
+        },
+        "manage_users": {
+          "computedUserset": { "relation": "admin" }
+        }
+      },
+      "metadata": {
+        "relations": {
+          "admin": { "directly_related_user_types": [{ "type": "user" }] },
+          "view_stats": { "directly_related_user_types": [] },
+          "view_all_data": { "directly_related_user_types": [] },
+          "manage_users": { "directly_related_user_types": [] }
+        }
+      }
+    },
+    {
+      "type": "course",
+      "relations": {
+        "creator": {
+          "this": {}
+        },
+        "student": {
+          "this": {}
+        },
+        "view": {
+          "union": {
+            "child": [
+              { "this": {} },
+              { "computedUserset": { "relation": "creator" } },
+              { "computedUserset": { "relation": "student" } }
+            ]
+          }
+        },
+        "edit": {
+          "computedUserset": { "relation": "creator" }
+        },
+        "view_enrollments": {
+          "computedUserset": { "relation": "creator" }
+        },
+        "enroll": {
+          "this": {}
+        }
+      },
+      "metadata": {
+        "relations": {
+          "creator": { "directly_related_user_types": [{ "type": "user" }] },
+          "student": { "directly_related_user_types": [{ "type": "user" }] },
+          "view": { "directly_related_user_types": [{ "type": "user" }, { "type": "user", "wildcard": {} }] },
+          "edit": { "directly_related_user_types": [] },
+          "view_enrollments": { "directly_related_user_types": [] },
+          "enroll": { "directly_related_user_types": [{ "type": "user" }] }
+        }
+      }
+    },
+    {
+      "type": "appointment",
+      "relations": {
+        "creator": {
+          "this": {}
+        },
+        "student": {
+          "this": {}
+        },
+        "view": {
+          "union": {
+            "child": [
+              { "computedUserset": { "relation": "creator" } },
+              { "computedUserset": { "relation": "student" } }
+            ]
+          }
+        },
+        "cancel": {
+          "union": {
+            "child": [
+              { "computedUserset": { "relation": "creator" } },
+              { "computedUserset": { "relation": "student" } }
+            ]
+          }
+        }
+      },
+      "metadata": {
+        "relations": {
+          "creator": { "directly_related_user_types": [{ "type": "user" }] },
+          "student": { "directly_related_user_types": [{ "type": "user" }] },
+          "view": { "directly_related_user_types": [] },
+          "cancel": { "directly_related_user_types": [] }
+        }
+      }
+    }
+  ]
+}
